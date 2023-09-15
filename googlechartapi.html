@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+
+// Reading from JSON
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+// Load Google's charting functions
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Put the JSON array into a variable
+const json = [
+  { "condiment" : "Item 1", "number" : 90 },
+  { "condiment" : "Item 2", "number" : 70 },
+  { "condiment" : "Item 3", "number" : 64 },
+  { "condiment" : "Item 4", "number" : 30 },
+  { "condiment" : "Item 5", "number" : 49 },
+  { "condiment" : "Item 6", "number" : 20 }
+];
+
+// Draw the chart and set the chart values
+function drawChart() {
+  
+  // Set the columns for the Google Chart in the first line of the array
+  var condArray = [['Condiment', 'Number']]; 
+  // Loop through the JSON array, set up the value pair & push to the end of condArray
+  for(i=0; i<json.length; i++) {
+    condArray.push([json[i].condiment, json[i].number]);
+  }
+ 
+  // Set the Google Chart options (title, width, height, and colors can be set)
+  var options = {
+    title: 'Favorite Condiments',
+    'width': 550,
+    'height': 400
+  };
+  
+  // Convert condArray into the DataTable that Google Charts needs and put it in a var
+  var data = google.visualization.arrayToDataTable(condArray)
+
+  // Display chart inside of the empty div element using the DataTable and Options set
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+ </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
